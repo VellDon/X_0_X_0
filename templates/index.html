@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Живой Фрактал</title>
+    <style>
+        /* Делаем фон черным, а холст на весь экран */
+        body { margin: 0; background: black; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let angle = 0; // Переменная для наклона веток
+
+        function drawTree(x, y, len, angle, branchWidth) {
+            ctx.beginPath();
+            ctx.save();
+            ctx.strokeStyle = `hsl(${len + angle * 10}, 100%, 50%)`; // Цвет меняется от длины
+            ctx.lineWidth = branchWidth;
+            ctx.translate(x, y);
+            ctx.rotate(angle * Math.PI / 180);
+            ctx.moveTo(0, 0);
+            ctx.lineTo(0, -len);
+            ctx.stroke();
+
+            if (len < 10) {
+                ctx.restore();
+                return;
+            }
+
+            // Рекурсия: рисуем две ветки поменьше
+            drawTree(0, -len, len * 0.75, angle + 10, branchWidth * 0.7);
+            drawTree(0, -len, len * 0.75, angle - 10, branchWidth * 0.7);
+
+            ctx.restore();
+        }
+
+        function animate() {
+            // 1. Стираем всё, что было нарисовано до этого
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Рисуем дерево, которое немного "качается" за счет изменения угла
+            // Мы меняем переменную angle по чуть-чуть в цикле анимации
+            let dynamicAngle = Math.sin(angle) * 20; 
+            drawTree(canvas.width / 2, canvas.height - 50, 120, dynamicAngle, 10);
+
+            angle += 0.02; // Скорость изменения
+
+            // 3. Запускаем цикл заново (бесконечно)
+            requestAnimationFrame(animate);
+        }
+
+        animate(); // Запуск магии
+    </script>
+</body>
+</html>
+

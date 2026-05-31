@@ -1,0 +1,26 @@
+.GameBtn {
+    height: 125px;
+    width: 125px;
+    border-width: 5px;
+    border-color: chocolate;
+    background-color: transparent;
+}
+
+.StateX {
+    background-image: url('X.png');
+}
+
+.State0 {
+    background-image: url('0.png');
+}
+
+.loyout {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* Делает 3 колонки */
+    justify-content: center;
+    /* Центрует всё поле влево-вправо */
+    align-content: center;
+    /* Центрует всё поле вверх-вниз */
+    gap: 5px;
+}
