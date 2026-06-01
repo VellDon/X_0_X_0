@@ -1,7 +1,6 @@
 class MinMaks:
-    def __init__(self, id, number):
+    def __init__(self, number):
         self.player = True
-        self.id_game = id
         self.move = number
         self.matrix = ["", "", "", "", "", "", "", "", ""]
         self.best_score = 0
@@ -62,10 +61,14 @@ class MinMaks:
                 if score > best:
                     best = score
                     index = i
+        print(f"Ход BOT индекс: {index}")
         return index
 
     def PlayerMove(self, move):
+        print(f"Ход игрока индекс: {move}")
         if self.matrix[move] == "":
             self.matrix[move] = "x"
+            return 1
         else:
             print("error")
+            return 0
