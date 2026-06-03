@@ -1,15 +1,13 @@
 const myBox = document.getElementById('myBox');
 let btns = Array.from(myBox.querySelectorAll('button'));
 console.log("Какая то длина = " + serverMatrix.length);
-let indx = -1;
+
 for (let i = 0; i < serverMatrix.length; i++) {
-    for (let j = 0; j < serverMatrix.length; j++) {
-        indx += 1;
-        if (serverMatrix[i][j] === 'x') {
-            btns[indx].classList.add('StateX');
-        } else if (serverMatrix[i][j] === '0') {
-            btns[indx].classList.add('State0');
-        }
+
+    if (serverMatrix[i] === 'x') {
+        btns[i].classList.add('StateX');
+    } else if (serverMatrix[i] === '0') {
+        btns[i].classList.add('State0');
     }
 }
 

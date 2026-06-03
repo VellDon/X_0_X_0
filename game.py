@@ -1,8 +1,7 @@
 class MinMaks:
-    def __init__(self, number):
+    def __init__(self, matrix):
         self.player = True
-        self.move = number
-        self.matrix = ["", "", "", "", "", "", "", "", ""]
+        self.matrix = matrix
         self.best_score = 0
 
     def Score(self, state):
@@ -26,7 +25,7 @@ class MinMaks:
             if i == "":
                 flag = True
         if flag:
-            return False
+            return "continue"
         else:
             return score
 
@@ -34,20 +33,20 @@ class MinMaks:
         flag = not flag
         self.matrix[move] = "x" if flag else "0"
         score = self.Score(self.matrix)
-        if score != False:
+        if score != "continue":
             self.matrix[move] = ""
             return score
 
-        best_score = float("inf") if flag else float("-inf")
+        best_score = float("-inf") if flag else float("inf")
 
         for i in range(len(self.matrix)):
             if self.matrix[i] == "":
                 score = self.Recurs(i, flag)
                 if flag:
-                    if score < best_score:
+                    if score > best_score:
                         best_score = score
                 else:
-                    if score > best_score:
+                    if score < best_score:
                         best_score = score
         self.matrix[move] = ""
         return best_score
@@ -61,7 +60,7 @@ class MinMaks:
                 if score > best:
                     best = score
                     index = i
-        print(f"Ход BOT индекс: {index}")
+
         return index
 
     def PlayerMove(self, move):

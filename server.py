@@ -38,6 +38,8 @@ def Hello():
     """
     id = Get_user_id()
     matrix = Get_data_base(id)
+
+    print(f"MATRIX SAVE GAME - {matrix}")
     return render_template("script.html", matrix=matrix)
 
 
@@ -47,10 +49,11 @@ def Move():
     index = int(data.get("number"))
     id = Get_user_id()
     user_matrix = Get_data_base(id)
-    game = MinMaks(number=index)
-    game.matrix = user_matrix
+    game = MinMaks(matrix=user_matrix)
     if game.PlayerMove(index) == 1:
         res = game.Main()
+        print(f"Ход игрока индекс: {index}")
+        print(f"Ход BOT индекс: {res}")
         game.matrix[res] = "0"
         Save_data_base(id, game.matrix)
         response = {"status": "ok", "move": res, "matrix": game.matrix}
