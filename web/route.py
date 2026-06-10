@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 class Route_web:
     def __init__(self, web_mapper):
         self.web_mapper = web_mapper
@@ -11,7 +11,9 @@ class Route_web:
 
         @self.web_bp.route("/move", methods=["POST"])
         def Move():
-            return 0
+            data = request.get_json()
+            web_model = web_model(data)
+            return web_mapper(web_model)
 
             
         @self.web_bp.route("/create", methods= ["GET"])
