@@ -5,7 +5,7 @@ class Repository:
     def __init__(self):
         self.Init_db()
 
-    def Init_db():
+    def Init_db(self):
         connection = sqlite3.connect("gamebase.db")
         curs = connection.cursor()
         curs.execute("""
@@ -15,7 +15,7 @@ class Repository:
         connection.commit()
         connection.close()
 
-    def Get(model):
+    def Get(self, model):
         connect = sqlite3.connect("gamebase.db")
         curs = connect.cursor()
         curs.execute("SELECT matrix FROM games WHERE user_id = ?", (model.game_id,))
@@ -28,12 +28,13 @@ class Repository:
         return saved_matrix
 
 
-    def Save_data_base(model):
-        str_matrix = json.dumps(str_matrix)
+    def Save(self, model):
+        user_id = json.dumps(model.game_id)
+        matrix = json.dumps(model.str_matrix)
         connect = sqlite3.connect("gamebase.db")
         curs = connect.cursor()
         curs.execute(
-            "REPLACE INTO games (user_id, matrix) VALUES (?, ?)", (model.game_id, model.str_matrix)
+            "REPLACE INTO games (user_id, matrix) VALUES (?, ?)", (user_id, matrix)
         )
         connect.commit()
         connect.close()

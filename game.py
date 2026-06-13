@@ -1,8 +1,7 @@
 class MinMaks:
-    def __init__(self, matrix):
+    def __init__(self):
         self.player = True
-        self.matrix = matrix
-        self.best_score = 0
+        self.matrix = None
 
     def Score(self, state):
         flag = False

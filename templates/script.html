@@ -5,6 +5,7 @@
     <title>Крестики_Нолики</title>
     <script>
         const serverMatrix = {{ matrix | tojson }};
+        const game_id = {{ uuid | tojson }};
     </script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">

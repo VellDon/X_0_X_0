@@ -25,7 +25,7 @@ async function Move(index) {
     const data = {
         number: index
     };
-    const result = await fetch('/move', {
+    const result = await fetch(`/move/${game_id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -38,6 +38,8 @@ async function Move(index) {
         btns[Number(index)].classList.add('StateX');
         let otvet = Number(res.move);
         btns[otvet].classList.add('State0');
+    } else {
+        alert("не возможный ход")
     }
 
 }
