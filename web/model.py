@@ -1,11 +1,25 @@
 
 class Model_web:
-    def __init__(self, data):
-      self.set_model(data)
+    def __init__(self):
+        self.index = None
+        self.matrix = None
+        self.id = None
 
     def set_model(self, data):
+        self.index = data["index"]
         self.matrix = data["matrix"]
         self.id = data["id"]
-        self.numer_move = data["index"]
-    def get_model():
-        return 0
+
+    def return_matrix(self):
+        return self.matrix
+    
+    def return_id(self):
+        return self.id
+    
+    def return_index(self):
+        return self.index
+    
+    def get_model(self, data, id):
+        self.index = data["index"]
+        self.id = id
+

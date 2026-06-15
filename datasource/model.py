@@ -9,4 +9,5 @@ class Model_repos:
         self.str_matrix = matrix
 
     def get_game(self, id):
-        return 0
+        self.game_id = id
+
