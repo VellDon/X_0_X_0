@@ -12,7 +12,8 @@ class Route_web:
             domain_model = web_mapper.to_domain(web_model)
             game = service.cont_game(domain_model)
             return web_mapper(web_model)
-
+        
+        # Стартовая страница роута
         @self.web_bp.route("/", methods= ["GET"])
         def Create():
             domain_game = service.new_game()

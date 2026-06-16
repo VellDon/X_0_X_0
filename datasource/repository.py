@@ -24,10 +24,11 @@ class Repository:
             saved_matrix = [""] * 9
         else:
             saved_matrix = json.loads(matrix_str[0])
+        
         connect.close()
-        return saved_matrix
+        return model
 
-
+    # Сохраняем в базу новый ключ и игру
     def Save(self, model):
         user_id = json.dumps(model.game_id)
         matrix = json.dumps(model.str_matrix)

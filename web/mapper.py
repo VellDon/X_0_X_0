@@ -5,18 +5,21 @@ class Mapper_web:
     def __init__(self):
         pass
     def to_domain(self, model_web):
-        index = json.loads(model_web.return_index())
+        index = int(json.loads(model_web.return_index()))
         id = model_web.return_id()
-        game = Model_domain.game(index, id)
+        game = Model_domain(id).game(index)
         return game
     
+    #При первом запуске
     def to_web(self, model_domain):
+        matrix_state = json.dumps(model_domain.matrix)
         data = {
-            "index": model_domain.index,
-            "matrix": model_domain.matrix,
+            "matrix": matrix_state,
             "id": str(model_domain.id)
         }
         game_web = Model_web.set_model(data)
+
+        return game_web
 
     def create_web(self, data, id):
         game_web = Model_web.get_model(data, id)

@@ -6,7 +6,6 @@ class Model_web:
         self.id = None
 
     def set_model(self, data):
-        self.index = data["index"]
         self.matrix = data["matrix"]
         self.id = data["id"]
 
