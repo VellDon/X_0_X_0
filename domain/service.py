@@ -8,15 +8,22 @@ class Service:
     
     #Для стартовой страницы
     def new_game(self):
-        id = str(uuid.uuid4())
-        game = Model_domain(str(id))
-        data_game = self.mapper_repos.to_repository(game)
-        data_game = self.repository.Save(data_game)
-        game = self.mapper_repos.to_domain(data_game, game)
+        id = str(uuid.uuid4()) #  создали айди
+        game_domain = Model_domain(id=id, matrix=[""] * 9)
+        data_game = self.mapper_repos.to_repository(game_domain)
+        self.repository.Save(data_game)
+        game = self.mapper_repos.to_domain(data_game)
         return game
     
-    def cont_game(self, game):
-        data_game = self.mapper_repos.to_repository(game)
+    # Для хода игрока
+    def cont_game(self, game_domain):
+        data_game = self.mapper_repos.to_get_repository(game_domain)
+        self.repository.Get(data_game)
+        self.mapper_repos.set_to_domain(game_domain, data_game)
+
+
+
+
 
 
 

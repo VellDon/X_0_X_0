@@ -1,9 +1,9 @@
 
 class Model_web:
-    def __init__(self):
-        self.index = None
-        self.matrix = None
-        self.id = None
+    def __init__(self, index=None, matrix=None, id=None):
+        self.index = index
+        self.matrix = matrix
+        self.id = id
 
     def set_model(self, data):
         self.matrix = data["matrix"]

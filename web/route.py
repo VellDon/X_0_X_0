@@ -4,7 +4,8 @@ class Route_web:
         self.web_mapper = web_mapper
         self.service = service
         self.web_bp = Blueprint("web", __name__)
-
+        
+        # Ход игрока
         @self.web_bp.route("/move/<uuid>", methods=["POST"])
         def Move(uuid):
             data = request.get_json()
@@ -18,7 +19,7 @@ class Route_web:
         def Create():
             domain_game = service.new_game()
             web_game = web_mapper.to_web(domain_game)
-
+            test_matrix = [""] * 9
             return render_template("script.html", matrix=web_game.return_matrix(), uuid=web_game.return_id())
         
     def get_bp(self):

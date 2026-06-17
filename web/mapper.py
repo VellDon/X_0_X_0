@@ -4,10 +4,12 @@ import json
 class Mapper_web:
     def __init__(self):
         pass
+
+    # Для обработки хода игрока
     def to_domain(self, model_web):
-        index = int(json.loads(model_web.return_index()))
+        index = int(model_web.return_index())
         id = model_web.return_id()
-        game = Model_domain(id).game(index)
+        game = Model_domain(id=id, index=index)
         return game
     
     #При первом запуске
@@ -17,10 +19,12 @@ class Mapper_web:
             "matrix": matrix_state,
             "id": str(model_domain.id)
         }
-        game_web = Model_web.set_model(data)
-
+        game_web = Model_web()
+        game_web.set_model(data)
         return game_web
-
+    
+    # Для обработки хода игрока
     def create_web(self, data, id):
-        game_web = Model_web.get_model(data, id)
+        index = data["index"]
+        game_web = Model_web(index=index, id=id)
         return game_web

@@ -21,12 +21,11 @@ class Repository:
         curs.execute("SELECT matrix FROM games WHERE user_id = ?", (model.game_id,))
         matrix_str = curs.fetchone()
         if matrix_str is None:
-            saved_matrix = [""] * 9
+            model.error()
         else:
             saved_matrix = json.loads(matrix_str[0])
-        
+            model.set_matrix(saved_matrix)
         connect.close()
-        return model
 
     # Сохраняем в базу новый ключ и игру
     def Save(self, model):

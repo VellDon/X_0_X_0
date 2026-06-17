@@ -1,8 +1,9 @@
 
 class Model_repos:
-    def __init__(self):
-        self.game_id = None
-        self.str_matrix = None
+    def __init__(self, id=None, matrix=None):
+        self.game_id = id
+        self.str_matrix = matrix
+        self.error = False
     
     #Для новой игры
     def new_game(self, id, matrix):
@@ -12,3 +13,7 @@ class Model_repos:
     def get_game(self, id):
         self.game_id = id
 
+    def set_error(self):
+        self.error = True
+    def set_matrix(self, matrix):
+        self.str_matrix = matrix
