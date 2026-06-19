@@ -25,6 +25,17 @@ class Mapper_web:
     
     # Для обработки хода игрока
     def create_web(self, data, id):
-        index = data["index"]
+        index = data["number"]
         game_web = Model_web(index=index, id=id)
         return game_web
+    
+    def to_return(self, web, domain):
+        data = {}
+        if domain.err_no_id == "yes" or domain.err_no_move == "yes":
+          data["status"] = "not"
+        else:
+            data["status"] = "ok"
+            data["move"] = domain.move
+            data["win"] = domain.win
+        
+        web.init_data(data)

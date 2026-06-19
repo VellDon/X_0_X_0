@@ -4,6 +4,10 @@ class Model_domain:
         self.id = id
         self.matrix = matrix
         self.index = index
+        self.err_no_id = None
+        self.err_no_move = None
+        self.move = None
+        self.win = None
 
     def game(self, index):
         self.index = index
@@ -14,3 +18,15 @@ class Model_domain:
     
     def init_matrix(self, matrix):
         self.matrix = matrix
+
+    def err_id(self):
+        self.err_no_id = "yes"
+
+    def err_move(self):
+        self.err_no_move = "yes"
+    
+    def bot(self, index):
+        self.move = index
+        
+    def Win(self, win):
+        self.win = win

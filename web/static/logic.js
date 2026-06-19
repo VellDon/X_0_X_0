@@ -35,12 +35,21 @@ async function Move(index) {
     });
     const res = await result.json();
     if (res.status === "ok") {
-        btns[Number(index)].classList.add('StateX');
+        btns[index].classList.add('StateX');
         let otvet = Number(res.move);
         btns[otvet].classList.add('State0');
+        if (res.win === "player"){
+            alert("Ты выйграл");
+            location.reload();
+        } else if (res.win === "bot"){
+            alert("Ты проиграл");
+            location.reload();
+        } else if (res.win === "draw"){
+            alert("Ничья");
+            location.reload();
+        }
     } else {
         alert("не возможный ход")
     }
 
 }
-

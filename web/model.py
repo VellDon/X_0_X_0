@@ -4,6 +4,7 @@ class Model_web:
         self.index = index
         self.matrix = matrix
         self.id = id
+        self.data = None
 
     def set_model(self, data):
         self.matrix = data["matrix"]
@@ -22,3 +23,9 @@ class Model_web:
         self.index = data["index"]
         self.id = id
 
+    def init_data(self, data):
+        self.data = data
+        
+    def request_data(self):
+        print(self.data)
+        return self.data

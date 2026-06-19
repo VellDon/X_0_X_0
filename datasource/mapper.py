@@ -25,4 +25,9 @@ class Mapper_rep:
     #Обновляем матрицу домен для игры
     def set_to_domain(self, domain, repos):
         matrix = repos.str_matrix
-        domain.init_matrix(matrix)
+        domain.init_matrix(json.loads(matrix))
+
+    def set_to_repos(self, domain, repos):
+        matrix = domain.matrix
+        repos.set_matrix(matrix)
+

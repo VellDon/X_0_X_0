@@ -21,16 +21,18 @@ class Repository:
         curs.execute("SELECT matrix FROM games WHERE user_id = ?", (model.game_id,))
         matrix_str = curs.fetchone()
         if matrix_str is None:
-            model.error()
+            model.set_error()
         else:
-            saved_matrix = json.loads(matrix_str[0])
+            saved_matrix = matrix_str[0]
             model.set_matrix(saved_matrix)
         connect.close()
 
     # Сохраняем в базу новый ключ и игру
     def Save(self, model):
-        user_id = json.dumps(model.game_id)
+        #user_id = json.dumps(model.game_id)
+        user_id = model.game_id
         matrix = json.dumps(model.str_matrix)
+ 
         connect = sqlite3.connect("gamebase.db")
         curs = connect.cursor()
         curs.execute(

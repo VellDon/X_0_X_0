@@ -4,12 +4,14 @@ from web.mapper import Mapper_web
 from domain.service import Service
 from datasource.repository import Repository
 from datasource.mapper import Mapper_rep
+from domain.game import MinMaks
 
 class Content:
     def __init__(self):
+        self.minMaks = MinMaks()
         self.mapper_rep = Mapper_rep()
         self.repository = Repository()
-        self.service = Service(self.repository, self.mapper_rep)
+        self.service = Service(self.repository, self.mapper_rep, self.minMaks)
         self.web_mapper = Mapper_web()
         self.web_bp = Route_web(self.web_mapper, self.service)
         self.server = App(self.web_bp.get_bp())

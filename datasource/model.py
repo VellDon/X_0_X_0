@@ -15,5 +15,9 @@ class Model_repos:
 
     def set_error(self):
         self.error = True
+
     def set_matrix(self, matrix):
         self.str_matrix = matrix
+    
+    def err(self):
+        return self.error
