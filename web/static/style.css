@@ -24,3 +24,19 @@
     /* Центрует всё поле вверх-вниз */
     gap: 5px;
 }
+
+.loyoutOff {
+    display: none;
+}
+
+.MyForm {
+
+    height: 300px;
+    width: 300px;
+    margin: 200px auto;
+    border: 5px solid chocolate;
+}
+
+.MyFormOff {
+    display: none;
+}

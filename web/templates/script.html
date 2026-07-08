@@ -14,7 +14,7 @@
 </head>
 
 <body style="background-color: black;">
-    <div id="myBox" class="loyout">
+    <div id="myBox" class="loyoutOff">
         <button data-index="0" type="button" class="GameBtn"></button>
         <button data-index="1" type="button" class="GameBtn"></button>
         <button data-index="2" type="button" class="GameBtn"></button>
@@ -25,6 +25,21 @@
         <button data-index="7" type="button" class="GameBtn"></button>
         <button data-index="8" type="button" class="GameBtn"></button>
     </div>
+    <form id="MyForm" class="MyForm">
+        <div style="width: 100px; margin: 10px 60px;">
+            <label style="color: chocolate;">Login:</label>
+            <input id="login" type="text">
+        </div>
+        <div style="width: 100px; margin: 10px 60px; ">
+            <label style="color: chocolate;">Password:</label>
+            <input id="password" type="password">
+        </div>
+        <button id="send" type="submit"
+            style="margin: 0 100px; width: 100px; height: 50px; color: rgb(235, 231, 229); background-color: rgb(93, 143, 93);">
+            Send
+        </button>
+
+    </form>
     <script src="{{ url_for('static', filename='logic.js') }}"></script>
 
 </body>
