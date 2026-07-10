@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, jsonify
+from flask import Blueprint, request, render_template, jsonify, session
 class Route_web:
     def __init__(self, web_mapper, service):
         self.web_mapper = web_mapper

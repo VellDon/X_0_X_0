@@ -25,9 +25,18 @@ myBox.addEventListener('click', function (event) {
 
 MyForm.addEventListener('submit', function (event) {
     event.preventDefault();
+    const click = event.submitter;
     let login = document.getElementById('login').value;
     let password = document.getElementById('password').value;
-    Register(login, password);
+    if (click && click.id === 'registr') {
+        alert("REgistr");
+        Register(login, password);
+    } else if (click && click.id === 'login') {
+        alert("Login");
+        Loginer(login, password);
+
+    }
+
 });
 async function Register(name, pass) {
     const data = {
@@ -52,6 +61,25 @@ async function Register(name, pass) {
     myBox.classList.remove('loyoutOff')
     myBox.classList.add('loyout');
     alert(data);
+}
+async function Loginer(name, pass) {
+    const data = {
+        name: name,
+        password: pass
+    }
+
+    const result = await fetch(`/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+    const res = await result.json();
+    if (res.status === "ok") {
+        MyForm.classList.add('MyFormOff');
+        myBox.classList.add('loyout');
+    }
 }
 
 async function Move(index) {
